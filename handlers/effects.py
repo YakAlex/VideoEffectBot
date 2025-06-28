@@ -2,12 +2,13 @@ from aiogram import Router
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.utils.keyboard import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.types import InlineKeyboardButton
 from fsm.states import VideoEffectStates
 
 router = Router()
 
-# Кнопки з простими ефектами
+# Доступні ефекти
 EFFECTS = {
     "glasses": "🕶️ Glasses",
     "explosion": "💥 Explosion",
@@ -17,10 +18,12 @@ EFFECTS = {
 
 @router.message(StateFilter(VideoEffectStates.ChoosingEffect))
 async def prompt_effect_choice(message: Message):
-    keyboard = InlineKeyboardMarkup(row_width=2)
-    buttons = [InlineKeyboardButton(text=name, callback_data=f"effect:{key}") for key, name in EFFECTS.items()]
-    keyboard.add(*buttons)
-    await message.answer("Оберіть ефект для накладення на відео:", reply_markup=keyboard)
+    builder = InlineKeyboardBuilder()
+    for key, name in EFFECTS.items():
+        builder.button(text=name, callback_data=f"effect:{key}")
+    builder.adjust(2)  # по 2 кнопки в ряд
+
+    await message.answer("Оберіть ефект для накладення на відео:", reply_markup=builder.as_markup())
 
 
 @router.callback_query(StateFilter(VideoEffectStates.ChoosingEffect))
