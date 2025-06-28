@@ -1,0 +1,6 @@
+aiogram==3.4.1
+aiofiles
+mediapipe
+opencv-python
+moviepy
+python-dotenv
