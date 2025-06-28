@@ -11,6 +11,9 @@ class VideoEffectStates(StatesGroup):
     # Користувач обирає один із ефектів (окуляри, вибух, сердечка, сміх)
     ChoosingEffect = State()
 
+    #Користувач обрав додати еффект вибуху та має вказати таймкод для обробки еффекту
+    WaitingForExplosionTime = State()
+
     # Питаємо, чи додати інтро/аутро
     ChoosingAddonType = State()
 
