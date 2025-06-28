@@ -17,6 +17,9 @@ class VideoEffectStates(StatesGroup):
     # Якщо обрано інтро/аутро — вибір джерела (готове відео чи своє)
     ChoosingAddonSource = State()
 
+    #Чекаємо, поки користувач обере відео з бібліотеки
+    ChoosingAddonFromLibrary = State()
+
     # Чекаємо, поки користувач надішле власне інтро/аутро
     WaitingForAddonVideo = State()
 
