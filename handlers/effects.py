@@ -10,7 +10,6 @@ router = Router()
 
 EFFECTS = {
     "glasses": "🕶️ Glasses",
-    "explosion": "💥 Explosion",
     "laugh": "😂 Laughing",
     "hearts": "❤️ Hearts"
 }
